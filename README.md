@@ -4,7 +4,7 @@
 
 ![animation gif](img/sort-anim-vproto0.gif)
 
-### 作った/作りたいアルゴリズム一覧
+## 作った/作りたいアルゴリズム一覧
 目標: みんなで9個以上！
 
 - [x] 1: バブルソート（担当: 澤田）
@@ -18,6 +18,6 @@
 - [ ] 9:
 - [ ] もっと増やしても良いよ！？！？！？
 
-### Inspired by...
+## Inspired by...
 * https://qiita.com/r-ngtm/items/f4fa55c77459f63a5228
 * https://m.youtube.com/watch?v=kPRA0W1kECg
