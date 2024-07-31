@@ -94,9 +94,9 @@ const sortList = {
   },
 
   /* 上のバブルソートを参考に追加していってね☆★☆ */
-  /*
+  /* こんな感じね
   yourSort: {
-    doSort() {...},
+    async doSort() {...},
     description: `...`
   },
   ...
