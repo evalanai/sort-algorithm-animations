@@ -69,7 +69,7 @@ class Demo {
   } 
 
   draw() {
-    this.#render.draw();
+    this.#render.draw({info: `${this.#sort.name}`});
   }
   
   reset() {

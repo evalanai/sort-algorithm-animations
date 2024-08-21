@@ -11,3 +11,5 @@ function createTargetWithVisualizer(xBegin, yBegin, width, height, n) {
 function sleep(ms) {
   return new Promise(resolve => setTimeout(() => resolve(), ms));
 }
+// minˆÈãmax–¢–ž
+const randomInt = (min, max) => Math.floor(Math.random() * (max-min) + min);
