@@ -4,6 +4,12 @@ const desc = document.querySelector('#description');
 
 function setup() {
   createCanvas(400, 400);
+  
+  document.querySelector('main>canvas').addEventListener('click', () => {
+    desc.innerHTML=demoList.thisDescription();
+    desc.hidden=false;
+  });
+  
   demoList = new DemoList();
   Object.entries(sortList).forEach(([name, sort]) => 
     demoList.addDemo(name, sort)
@@ -16,7 +22,3 @@ function draw() {
   demoList.eachDraw();
 }
 
-function mouseClicked() {
-  desc.innerHTML=demoList.thisDescription();
-  desc.hidden=false;
-}
