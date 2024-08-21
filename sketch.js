@@ -1,5 +1,6 @@
 // 本当はconstにしたいのですがp5ライブラリの都合上…
 let demoList;
+const desc = document.querySelector('#description');
 
 function setup() {
   createCanvas(400, 400);
@@ -13,4 +14,9 @@ function setup() {
 function draw() {
   background(220);
   demoList.eachDraw();
+}
+
+function mouseClicked() {
+  desc.innerHTML=demoList.thisDescription();
+  desc.hidden=false;
 }

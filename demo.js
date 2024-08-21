@@ -43,6 +43,11 @@ class DemoList {
   start() {
     this.#demos[this.#cur].start();  
   }
+
+  thisDescription() {
+    console.log(this.#demos[this.#cur])
+    return this.#demos[this.#cur].describe();
+  }
 }
 
 class Demo {
