@@ -22,7 +22,6 @@ class Render {  // 描画
 
   addMark(index, name) {  // 見た目用
     this.#target.barAt(index).addMark(name);
-    console.log(this.#target.barAt(index));
   }
 
   clearMark(index, name) {
@@ -63,7 +62,6 @@ class Render {  // 描画
         fill('red');
 
       } else if (activeMark) {
-        console.log(activeMark);
         fill(this.#marks.get(activeMark).color);
 
       } else {
