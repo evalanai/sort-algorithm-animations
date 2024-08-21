@@ -75,6 +75,7 @@ sortList.quicksort = {
     let finished = false;
 
     await sort(0, tg.length);
+    tg.done();
 
     //
   }
