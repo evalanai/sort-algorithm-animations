@@ -4,7 +4,6 @@ sortList.quicksort = {
     tg.createMark('Pivot', '#88f', true);
 
     async function sort(beg, max) {
-      console.log('sort');
       const end = max - 1;
       if (beg >= end || beg === max) return;
 
@@ -12,59 +11,37 @@ sortList.quicksort = {
       let pivotIdx = randomInt(beg, max);
       const [pivot] = tg.at(pivotIdx);
       tg.markIndex(pivotIdx, 'Pivot');
-      console.log(`pivot: ${pivot}, index: ${pivotIdx}`);
 
       let high_i = beg;  // pivot以上の値のindex
       let low_i  = end;  // pivot未満の値のindex
-      let high_found, low_found;
 
       // 左にpivot未満、右にpivot以上の値を集める
       while (true) {
-        console.log('find');
-        console.log(tg.values.slice(beg, max));
         // 左からpivot以上の値を探す
-        for (let left = high_i; left < max; left++) {
-          high_found = false;
-          const [v] = tg.at(left);
+        for (; tg.at(high_i) < pivot; high_i++) {
           await sleep(50);
-          console.log(`→left: i: ${left}, ${v} >= ${pivot} (${v >= pivot})`);
-          if (v >= pivot) {
-            high_i = left;
-            high_found = true;
-            break;
-          }
-        }
-        // 右からpivot未満の値を探す
-        for (let right = low_i; right >= beg; right--) {
-          low_found = false;
-          const [v] = tg.at(right);
-          await sleep(50);
-          console.log(`←right: ${right}, ${v} <= ${pivot} (${v <= pivot})`);
-          if (v <= pivot) {
-            low_i = right;
-            low_found = true;
-            break;
-          }
         }
 
-        console.log('validate');
+        // 右からpivot以下の値を探す
+        for (; tg.at(low_i) > pivot; low_i--) {
+          await sleep(50);
+        }
+
         // 左から探したindexのほうが左にある（= 交ざってる）
         if (high_i < low_i) {
           tg.swap(high_i, low_i);
           await sleep(50);
-          high_i++;
-          console.log(`${high_i} < ${low_i}, swapped`);
 
         } else { // 逆になってる or 一致（= 分け尽くした）
           break;
         }
       }
 
-      console.log(pivot, tg.values.slice(beg, max), high_i, low_i);
-      tg.unmarkIndex(tg.values.findIndex(v => v === pivot), 'Pivot');
+      pivotIndex = high_i;  // high_i === low_i && low_i === pivotIndex
+      tg.unmarkIndex(pivotIndex, 'Pivot');
       // pivot未満の部分とそれ以外でそれぞれ
-      await sort(beg, high_i);
-      await sort(high_i, max);
+      await sort(beg, pivotIndex);
+      await sort(pivotIndex+1, max);
     }
 
     await sort(0, tg.length);
