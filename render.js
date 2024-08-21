@@ -22,10 +22,11 @@ class Render {  // 描画
 
   addMark(index, name) {  // 見た目用
     this.#target.barAt(index).addMark(name);
+    console.log(this.#target.barAt(index));
   }
 
-  unmark(name) {
-    this.#marks.get(name).active = false;
+  clearMark(index, name) {
+    this.#target.barAt(index).removeMark(name);
   }
     
   setTarget(target) {
@@ -56,14 +57,14 @@ class Render {  // 描画
     this.#target.bars.forEach((bar, idx) => {
       const x = idx+tickness*idx;
       const h = map(bar.value, 0, this.#target.length, margin, this.#height-margin);
+      const activeMark = bar.marks.find(i => this.#marks.get(i).active);
 
       if (this.#highlightedIndex?.has(idx)) {  // 棒の色
         fill('red');
 
-      } else if (bar.marks.some(i => i.active)) {
-        const mark = bar.marks.find(i => i.active);
-        console.log(mark);
-        fill(mark.color);
+      } else if (activeMark) {
+        console.log(activeMark);
+        fill(this.#marks.get(activeMark).color);
 
       } else {
         fill(255);

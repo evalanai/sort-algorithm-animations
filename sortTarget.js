@@ -66,4 +66,8 @@ class SortTarget {  // 並べ替え対象
   markIndex(idx, name) {  // 見た目用 色を付ける
     this.#render.addMark(idx, name);
   }
+
+  unmarkIndex(idx, name) {
+    this.#render.clearMark(idx, name);
+  }
 }

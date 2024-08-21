@@ -1,16 +1,16 @@
 // -*- coding: utf-8-unix -*-
 sortList.quicksort = {
   async doSort(tg) {
+    tg.createMark('Pivot', '#88f', true);
+
     async function sort(beg, max) {
       console.log('sort');
       const end = max - 1;
       if (beg >= end || beg === max) return;
-      
-      
+
       // pivotを決める
       let pivotIdx = randomInt(beg, max);
-      let [pivot] = tg.at(pivotIdx);
-      tg.createMark('Pivot', 'blue', true);
+      const [pivot] = tg.at(pivotIdx);
       tg.markIndex(pivotIdx, 'Pivot');
       console.log(`pivot: ${pivot}, index: ${pivotIdx}`);
 
@@ -61,12 +61,11 @@ sortList.quicksort = {
       }
 
       console.log(pivot, tg.values.slice(beg, max), high_i, low_i);
+      tg.unmarkIndex(tg.values.findIndex(v => v === pivot), 'Pivot');
       // pivot未満の部分とそれ以外でそれぞれ
       await sort(beg, high_i);
       await sort(high_i, max);
     }
-
-    let finished = false;
 
     await sort(0, tg.length);
     tg.done();

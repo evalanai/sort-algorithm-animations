@@ -19,8 +19,8 @@ class Bar {
     this.#marks.add(name);
   }
 
-  clearMark() {
-    this.#marks.clear();
+  removeMark(name) {
+    this.#marks.delete(name);
   }
 
   has(name) {
