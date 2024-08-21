@@ -48,12 +48,6 @@ sortList.quicksort = {
         }
 
         console.log('validate');
-        /*/ むっちゃ端のデータ拾っちゃったとかで見つからなかったら再抽選
-        if (!(high_found && low_found) && beg - max !== 2) {
-          pivotIdx = randomInt(beg, max);
-          pivot = tg.at(pivotIdx)[0];
-          continue;
-        }*/
         // 左から探したindexのほうが左にある（= 交ざってる）
         if (high_i < low_i) {
           tg.swap(high_i, low_i);
