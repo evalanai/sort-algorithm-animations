@@ -75,7 +75,10 @@ sortList.quicksort = {
     let finished = false;
 
     await sort(0, tg.length);
+    tg.done();
 
-    //
-  }
+  },
+
+  description: `クイックソート
+初めにピボットと呼ばれる基準値を選び、それより大きい値と小さい値に分けることを繰り返すアルゴリズムです。多くの場合、他のソートに比べ高速であるとされています。`
 };
