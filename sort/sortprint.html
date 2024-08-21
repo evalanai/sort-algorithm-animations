@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script src="sort0000.js"></script>
+        <script>
+            const arr = Array.from({ length: 100 }, () => Math.floor(Math.random() * 100));
+            console.log('Original:', arr.slice());
+            console.log('Kari Sort:', kariSort([...arr]));
+            console.log('Bubble Sort 0:', bubbleSort0([...arr]));
+            console.log('Bubble Sort 1:', bubbleSort1([...arr]));
+            console.log('Bubble Sort 2:', bubbleSort2([...arr]));
+            console.log('Shuttle Sort:', shuttleSort([...arr]));
+            console.log('Shell Sort:', shellSort([...arr]));
+            console.log('Frequency Sort:', frequencySort([...arr]));
+        </script>
+    </body>
+</html>
