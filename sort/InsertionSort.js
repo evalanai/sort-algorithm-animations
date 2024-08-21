@@ -1,9 +1,3 @@
-function swap(arr, a, b) {
-    var tmp = arr[a];
-    arr[a] = arr[b];
-    arr[b] = tmp;
-}
-
 function InsertionSort(arr) {
     let len = arr.length;
     let holder;
