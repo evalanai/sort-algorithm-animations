@@ -5,16 +5,14 @@ import { sortList } from './sort/sortList.js';
 let demoList;
 const desc = document.querySelector('#description');
 
-function showDesctiption() {
-  desc.innerHTML=demoList.thisDescription();
+function showDescription() {
+  desc.innerHTML=demoList.thisDescription() ?? 'no document.';
   desc.hidden=false;
 }
 
 window.setup = () => {
   createCanvas(400, 400);
-  
-  //document.querySelector('main>canvas').addEventListener('click', showDescription);
-  
+
   demoList = new DemoList();
   Object.entries(sortList).forEach(([name, sort]) => 
     demoList.addDemo(name, sort)
@@ -24,5 +22,6 @@ window.setup = () => {
 
 window.draw = () => {
   background(220);
+  showDescription();
   demoList.eachDraw();
 }
