@@ -30,8 +30,13 @@ export class SortTarget {  // 並べ替え対象
     return this.#isSorted;
   }
 
+  set(index, value) {
+    this.#numbers[index] = new Bar(value);
+  }
+
   at(...indexes) {  // なんぼでも同時に取ってこれるように
     this.#render.highlightSelect(...indexes);
+    if (indexes.length === 1) return this.#numbers[indexes[0]]?.value;
     return indexes.map(index => this.#numbers[index]?.value);
   }
 
