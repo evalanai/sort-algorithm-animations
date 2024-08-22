@@ -1,19 +1,24 @@
-function InsertionSort(arr) {
-    let len = arr.length;
-    let holder;
+export const InsertionSort = {
+    async doSort(arr, sleep) {
+        let len = arr.length;
+        let holder;
 
-    for (let i = 1; i < len; i++) {
-        holder = arr[i];
+        for (let i = 1; i < len; i++) {
+            holder = arr.at(i);
 
-        for (let j = i - 1; j >= 0; j--) {
-            if (a[j] > holder) {
-                arr[j + 1] = arr[j];
+            let j = i - 1;
+            for (; j >= 0; j--) {
+                if (arr.at(j) > holder) {
+                    arr.set(j + 1, arr.at(j));
+                }
+                else {
+                    break;
+                }
+                await sleep();
             }
-            else {
-                break;
-            }
+            arr.set(j + 1, holder);
         }
-        arr[j + 1] = holder;
+        arr.done();
+        return arr;
     }
-    return arr;
 }
