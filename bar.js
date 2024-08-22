@@ -23,6 +23,10 @@ export class Bar {
     this.#marks.delete(name);
   }
 
+  clearMark(name) {
+    this.#marks.clear();
+  }
+
   has(name) {
     return this.#marks.has(name);
   }

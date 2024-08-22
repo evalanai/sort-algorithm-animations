@@ -11,6 +11,7 @@ import { kariSort,
 import { InsertionSort } from './InsertionSort.js';
 //import { SelectionSort } from './SelectionSort.js';
 import { ShakerSort } from './ShakerSort.js';
+import { mergesort } from './mergesort.js'; 
 
 export const sortList = {
   bubblesort,
@@ -25,6 +26,7 @@ export const sortList = {
   shuttleSort,
   shellSort,
   frequencySort,
+  mergesort,
   
   /* こんな感じね
   yourSort: {

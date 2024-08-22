@@ -46,10 +46,10 @@ export class SortTarget {  // 並べ替え対象
 
   between(beg, end) { // beg <= index <= endの範囲の値
     this.#render.highlightRange(beg, end);
-    return this.#numbers.slice(beg, end+1);
+    return this.#numbers.slice(beg, end+1).map(i => i.value);
   }
 
-  async swap(index1, index2) {
+  swap(index1, index2) {
     const temp = this.#numbers[index1];
 
     this.#numbers[index1] = this.#numbers[index2];
@@ -75,6 +75,6 @@ export class SortTarget {  // 並べ替え対象
   }
 
   unmarkIndex(idx, name) {
-    this.#render.clearMark(idx, name);
+    this.#render.removeMark(idx, name);
   }
 }

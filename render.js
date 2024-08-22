@@ -24,8 +24,11 @@ export class Render {  // 描画
     this.#target.barAt(index).addMark(name);
   }
 
-  clearMark(index, name) {
-    this.#target.barAt(index).removeMark(name);
+  removeMark(index, name) {
+    if (name) {
+      return this.#target.barAt(index).removeMark(name);
+    }
+    this.#target.barAt(index).clearMark();
   }
     
   setTarget(target) {
@@ -44,10 +47,10 @@ export class Render {  // 描画
     rect(this.#xBegin, this.#yBegin, this.#width, this.#height);
     // 注目中範囲
     if (this.#highlightedRange) {
-      const rangeLeft  = this.#highlightedRange.begin;
-      const rangeRight = this.#highlightedRange.end/*todo: 位置加工*/;
-
-      rect(rangeLeft, this.yBegin, rangeRight, this.#height);
+     /* const rangeLeft  = this.#highlightedRange.begin * tickness+margin;
+      const rangeRight = (this.#highlightedRange.end) * tickness-margin;
+      fill(50, 100, 50);
+      rect(rangeLeft, this.#yBegin, rangeRight, this.#height-margin);*/
     }
 
     translate(margin,0);
