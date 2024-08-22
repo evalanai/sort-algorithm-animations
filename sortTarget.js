@@ -1,4 +1,6 @@
-class SortTarget {  // 並べ替え対象
+import { Bar } from './bar.js';
+
+export class SortTarget {  // 並べ替え対象
   #numbers;
   #render;
   #isSorted;
@@ -42,7 +44,7 @@ class SortTarget {  // 並べ替え対象
     return this.#numbers.slice(beg, end+1);
   }
 
-  swap(index1, index2) {
+  async swap(index1, index2) {
     const temp = this.#numbers[index1];
 
     this.#numbers[index1] = this.#numbers[index2];

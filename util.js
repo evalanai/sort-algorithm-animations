@@ -1,4 +1,7 @@
-function createTargetWithVisualizer(xBegin, yBegin, width, height, n) {
+import { Render } from './render.js';
+import { SortTarget } from './sortTarget.js';
+
+export function createTargetWithVisualizer(xBegin, yBegin, width, height, n) {
   const render = new Render(xBegin, yBegin, width, height);
   const tg     = new SortTarget(n);
 
@@ -8,8 +11,8 @@ function createTargetWithVisualizer(xBegin, yBegin, width, height, n) {
   return {render, target: tg};
 }
 
-function sleep(ms) {
+export function sleep(ms) {
   return new Promise(resolve => setTimeout(() => resolve(), ms));
 }
 // minˆÈãmax–¢–ž
-const randomInt = (min, max) => Math.floor(Math.random() * (max-min) + min);
+export const randomInt = (min, max) => Math.floor(Math.random() * (max-min) + min);

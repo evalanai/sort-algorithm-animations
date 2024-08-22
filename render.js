@@ -1,4 +1,4 @@
-class Render {  // 描画
+export class Render {  // 描画
   #xBegin;
   #yBegin;
   #width;

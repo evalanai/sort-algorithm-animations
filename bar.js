@@ -1,4 +1,4 @@
-class Bar {
+export class Bar {
   #value;  // 棒が表す数値
   #marks;
   

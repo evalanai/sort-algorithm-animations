@@ -1,3 +1,6 @@
+import { DemoList } from './demo.js';
+import { sortList } from './sort/sortList.js';
+
 // 本当はconstにしたいのですがp5ライブラリの都合上…
 let demoList;
 const desc = document.querySelector('#description');
@@ -7,7 +10,7 @@ function showDesctiption() {
   desc.hidden=false;
 }
 
-function setup() {
+window.setup = () => {
   createCanvas(400, 400);
   
   //document.querySelector('main>canvas').addEventListener('click', showDescription);
@@ -19,8 +22,7 @@ function setup() {
   demoList.start();
 }
 
-function draw() {
+window.draw = () => {
   background(220);
   demoList.eachDraw();
 }
-

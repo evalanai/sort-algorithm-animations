@@ -1,14 +1,15 @@
+import { createTargetWithVisualizer, sleep } from './util.js';
 
 // 鬆�逡ｪ縺ｫ陦ｨ遉ｺ縺吶ｋ縺溘ａ縺ｮ陬乗婿菴懈･ｭ
 
-class DemoList {
+export class DemoList {
   #demos = [];
   #cur = 0;
   #intervalFrame = 60;
   #t = 0;
 
-  addDemo(name, sort) {
-    this.#demos.push(new Demo(name, sort));
+  addDemo(name, sort, n=10) {
+    this.#demos.push(new Demo(name, sort, n));
   }
 
   eachDraw() {
@@ -50,15 +51,28 @@ class DemoList {
   }
 }
 
-class Demo {
+export class Demo {
   #sort;
   #render;
   #target;
+  #waitTime;
 
-  constructor(name, sort) {
-    ({render: this.#render, target: this.#target} = createTargetWithVisualizer(5, 5, width-10, height-10, 10));
+  constructor(name, sort, n) {
+    ({render: this.#render, target: this.#target} = createTargetWithVisualizer(5, 5, width-10, height-10, n));
     this.#sort = sort;
     this.#sort.name = name;
+    this.#waitTime = this.#sort.interval ?? 50; 
+  }
+/*
+  // optで使えるもの
+  // n: 棒の数
+  // xBegin, yBegin: x, y始点
+  // width, height: 幅、高さ
+  resize(opt) {
+  }
+*/
+  setWaitTime(ms) {
+    this.#waitTime = ms;
   }
 
   get finished() {
@@ -70,7 +84,7 @@ class Demo {
   }
 
   start() {
-    this.#sort.doSort(this.#target);
+    this.#sort.doSort(this.#target, () => sleep(this.#waitTime));
   } 
 
   draw() {

@@ -1,6 +1,8 @@
 // -*- coding: utf-8-unix -*-
-sortList.quicksort = {
-  async doSort(tg) {
+import { randomInt } from '../util.js';
+
+export const quicksort = {
+  async doSort(tg, sleep) {  // sleep: 停止時間の指定されたsleep
     tg.createMark('Pivot', '#88f', true);
 
     async function sort(beg, max) {
@@ -8,9 +10,9 @@ sortList.quicksort = {
       if (beg >= end || beg === max) return;
 
       // pivotを決める
-      let pivotIdx = randomInt(beg, max);
-      const [pivot] = tg.at(pivotIdx);
-      tg.markIndex(pivotIdx, 'Pivot');
+      let pivotIndex = randomInt(beg, max);
+      const [pivot] = tg.at(pivotIndex);
+      tg.markIndex(pivotIndex, 'Pivot');
 
       let high_i = beg;  // pivot以上の値のindex
       let low_i  = end;  // pivot未満の値のindex
@@ -19,18 +21,18 @@ sortList.quicksort = {
       while (true) {
         // 左からpivot以上の値を探す
         for (; tg.at(high_i) < pivot; high_i++) {
-          await sleep(50);
+          await sleep();
         }
 
         // 右からpivot以下の値を探す
         for (; tg.at(low_i) > pivot; low_i--) {
-          await sleep(50);
+          await sleep();
         }
 
         // 左から探したindexのほうが左にある（= 交ざってる）
         if (high_i < low_i) {
           tg.swap(high_i, low_i);
-          await sleep(50);
+          await sleep();
 
         } else { // 逆になってる or 一致（= 分け尽くした）
           break;

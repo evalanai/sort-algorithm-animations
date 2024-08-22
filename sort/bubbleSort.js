@@ -1,5 +1,5 @@
-sortList.bubblesort = {
-  async doSort(tg) {
+export const bubblesort = {
+  async doSort(tg, sleep) {
     // 本当ならこっちに突っ込もうかと思っていた処理を全部
     // SortTargetに追い出したのでこんな感じで配列の代わりに
     // SortTargetをいじくり回してくだちい
@@ -20,7 +20,7 @@ sortList.bubblesort = {
           finished = false;
         }
 
-        await sleep(50);  // 人間が目で追えるくらいのスピードに
+        await sleep();  // 人間が目で追えるくらいのスピードに
       }
     }
     tg.done();   // ソート完了通知
