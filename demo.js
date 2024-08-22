@@ -1,3 +1,4 @@
+
 // 順番に表示するための裏方作業
 
 class DemoList {
@@ -45,7 +46,6 @@ class DemoList {
   }
 
   thisDescription() {
-    console.log(this.#demos[this.#cur])
     return this.#demos[this.#cur].describe();
   }
 }
