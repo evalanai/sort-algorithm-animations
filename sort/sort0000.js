@@ -5,104 +5,129 @@ function swap(arr, i, j) {
 }
 
 //適当に思いついたけどなんだこのソート
-function kariSort(arr) {
-    const len = arr.length;
+export const kariSort = {
+  async doSort(tg, sleep) {
+    const len = tg.length;
     for (let i = 0; i < len; i++) {
         for (let j = i; j < len; j++) {
-            if (arr[i] > arr[j]) {
-                swap(arr, i, j);
-            }
+          if (tg.at(i) > tg.at(j)) {
+            tg.swap(i, j);
+            await sleep();
+          }
         }
     }
-    return arr;
+    tg.done();
+    return tg.value;
+  }
 }
 
 //バブルソートレベル0
-function bubbleSort0(arr) {
-    const len = arr.length;
+export const bubbleSort0 = {
+  async doSort(tg, sleep) {
+    const len = tg.length;
     for (let i = 0; i < len; i++) {
         for (let j = len - 1; j > i; j--) {
-            if (arr[j - 1] > arr[j]) {
-                swap(arr, j - 1, j);
+            if (tg.at(j - 1) > tg.at(j)) {
+              tg.swap(j - 1, j);
+              await sleep();
             }
         }
     }
-    return arr;
+    tg.done();
+    return tg;
+  }
 }
 
 //バブルソートレベル1
-function bubbleSort1(arr) {
-    const len = arr.length;
+export const bubbleSort1 = {
+  async doSort(tg, sleep) {
+    const len = tg.length;
     for (let i = 0; i < len; i++) {
         let count = 0;
         for (let j = len - 1; j > i; j--) {
-            if (arr[j - 1] > arr[j]) {
-                swap(arr, j - 1, j);
+            if (tg.at(j - 1) > tg.at(j)) {
+              tg.swap(j - 1, j);
+              await sleep();
                 count++;
             }
         }
         if (count === 0) break;
     }
-    return arr;
+    tg.done();
+    return tg.values;
+  }
 }
 
 //バブルソートレベル2
-function bubbleSort2(arr) {
+export const bubbleSort2 = {
+  async doSort(tg, sleep) {
     let i = 0;
-    const len = arr.length;
+    const len = tg.length;
     while (i < len - 1) {
         let lastSwap = len - 1;
         for (let j = len - 1; j > i; j--) {
-            if (arr[j - 1] > arr[j]) {
-                swap(arr, j - 1, j);
+            if (tg.at(j - 1) > tg.at(j)) {
+              tg.swap(j - 1, j);
+              await sleep();
                 lastSwap = j;
             }
         }
         i = lastSwap;
     }
-    return arr;
+    tg.done();
+    return tg.values;
+  }
 }
 
 //シャトルソート
-function shuttleSort(arr) {
-    const len = arr.length;
+export const shuttleSort = {
+  async doSort(tg, sleep) {
+    const len = tg.length;
     for (let i = 1; i < len; i++) {
-        const temp = arr[i];
+        const temp = tg.at(i);
         let j;
-        for (j = i; j > 0 && arr[j - 1] > temp; j--) {
-            arr[j] = arr[j - 1];
+        for (j = i; j > 0 && tg.at(j - 1) > temp; j--) {
+          tg.set(j, tg.at(j - 1));
         }
-        arr[j] = temp;
+      tg.set(j, temp);
+      await sleep();
     }
-    return arr;
+    tg.done();
+    return tg.value;
+  }
 }
 
 //シェルソート
-function shellSort(arr) {
-    const len = arr.length;
+export const shellSort = {
+  async doSort(tg, sleep) {
+    const len = tg.length;
     for (let h = Math.floor(len / 2); h > 0; h = Math.floor(h / 2)) {
         for (let i = h; i < len; i++) {
-            const temp = arr[i];
+            const temp = tg.at(i);
             let j;
-            for (j = i; j >= h && arr[j - h] > temp; j -= h) {
-                arr[j] = arr[j - h];
+            for (j = i; j >= h && tg.at(j - h) > temp; j -= h) {
+              tg.set(j, tg.at(j - h));
             }
-            arr[j] = temp;
+          tg.set(j, temp);
+          await sleep();
         }
     }
-    return arr;
+    tg.done();
+    return tg.value;
+  }
 }
 
 //度数分布ソート
-function frequencySort(arr) {
-    const len = arr.length;
-    const max = Math.max(...arr);
+  export const frequencySort = {
+    async doSort(tg, sleep) {
+    const len = tg.length;
+    const max = Math.max(...tg.values);
 
     const f = new Array(max + 1).fill(0);
     const n = new Array(len).fill(0);
 
     for (let i = 0; i < len; i++) {
-        f[arr[i]]++;
+        f[tg.at(i)]++;
     }
 
     for (let i = 1; i <= max; i++) {
@@ -110,13 +135,16 @@ function frequencySort(arr) {
     }
 
     for (let i = len - 1; i >= 0; i--) {
-        n[--f[arr[i]]] = arr[i];
+        n[--f[tg.at(i)]] = tg.at(i);
     }
 
     for (let i = 0; i < len; i++) {
-        arr[i] = n[i];
+      tg.set(i, n[i]);
+      await sleep();
     }
 
-    return arr;
+      tg.done();
+      return tg.value;
+    }
 }
 

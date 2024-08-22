@@ -11,7 +11,7 @@ export const quicksort = {
 
       // pivotを決める
       let pivotIndex = randomInt(beg, max);
-      const [pivot] = tg.at(pivotIndex);
+      const pivot = tg.at(pivotIndex);
       tg.markIndex(pivotIndex, 'Pivot');
 
       let high_i = beg;  // pivot以上の値のindex
