@@ -2,6 +2,7 @@ function SelectionSort(arr)
 {
 	const len = arr.length;
 	let biggest;
+	let holder;
 
 	for (let i = 0; i < len; i++)
 	{
@@ -14,8 +15,12 @@ function SelectionSort(arr)
 				biggest = j;
 			}
 		}
-
-		swap(後で);
+		holder = arr[biggest];
+		
+		for(let k = biggest - 1; k >= i; k--)
+		{
+			arr[k + 1] = arr[k];
+		}
 	}
 
 	return arr;
