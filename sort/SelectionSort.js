@@ -1,10 +1,3 @@
-function swap(arr, a, b)
-{
-	var tmp = arr[a];
-	arr[a] = arr[b];
-	arr[b] = tmp;
-}
-
 function SelectionSort(arr)
 {
 	const len = arr.length;
@@ -14,7 +7,7 @@ function SelectionSort(arr)
 	{
 		biggest = i;
 
-		for (let j = 0; j < len; j++)
+		for (let j = i; j < len; j++)
 		{
 			if (arr[j] < arr[j + 1])
 			{
@@ -22,7 +15,7 @@ function SelectionSort(arr)
 			}
 		}
 
-		swap(arr, i, biggest);
+		swap(後で);
 	}
 
 	return arr;
