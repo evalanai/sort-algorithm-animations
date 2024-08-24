@@ -1,4 +1,4 @@
-import { DemoList } from './demolist.js';
+import { DemoList } from './demoList.js';
 import { sortList } from './sort/sortList.js';
 
 // 本当はconstにしたいのですがp5ライブラリの都合上…
