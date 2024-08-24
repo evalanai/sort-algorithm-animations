@@ -16,9 +16,10 @@ export class DemoList {
   eachDraw(p) {
     if (this.#demos[this.#cur].finished) {
       this.next();
+      this.#demos[this.#cur].setP5Instance(p);
+      this.start();
 
     } else {
-      this.#demos[this.#cur].setP5Instance(p);
       this.#demos[this.#cur].draw();
     }
   }
@@ -51,7 +52,11 @@ export class DemoList {
   }
 
   startEach() {
-    new p5(this.eachDraw);
+    new p5(p => {
+      this.#demos[this.#cur].setP5Instance.bind(this.#demos[this.#cur])(p);
+      p.draw = this.eachDraw.bind(this, p);
+    }, "cnv_default");
+    this.#demos[this.#cur].start();
   }
 
   onClick(e) {
@@ -87,7 +92,6 @@ export class DemoList {
     this.#cur = (this.#cur+1) % this.#demos.length;
     this.#t = 0;
 
-    this.start();
   }
 
   restart(i) {

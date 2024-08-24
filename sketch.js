@@ -17,7 +17,7 @@ window.onload = () => {
     demoList.addDemo(name, sort)
   );
   
-  demoList.startAll();
+  demoList.startEach();
 }
 /*
 window.draw = () => {
