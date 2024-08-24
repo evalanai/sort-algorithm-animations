@@ -43,16 +43,18 @@ footer {
   position: fixed;
   bottom: 0;
   left: 0;
+  padding: 10px;
   background-color: #eefb;
   height: 30%;
-  width: 100%;
+  display: block;
+  width: calc(100% - 20px);
   overflow-y: scroll;
-  z-index: 2;
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
   opacity: 1;
 }
 
 #info.hidden {
     opacity: 0;
+    height: 20%;
     visibility: hidden;
 }
