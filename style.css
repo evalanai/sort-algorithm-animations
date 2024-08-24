@@ -38,3 +38,21 @@ footer {
     bottom: 0;
     padding: 10px;
 }
+
+#info {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #eefb;
+  height: 30%;
+  width: 100%;
+  overflow-y: scroll;
+  z-index: 2;
+  transition: 0.5s ease-in-out;
+  opacity: 1;
+}
+
+#info.hidden {
+    opacity: 0;
+    visibility: hidden;
+}

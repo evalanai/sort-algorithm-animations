@@ -37,7 +37,7 @@ export class DemoList {
     const container = document.querySelector('#canvas-container');
     this.#demos.forEach((demo, i) => {
       const btn = document.createElement('button');
-      const id = `sk_${demo.name}`;
+      const id = `sk_${i}`;
       btn.className = 'cnv-button';
       btn.id = id;
       container.appendChild(btn);
@@ -49,7 +49,7 @@ export class DemoList {
       demo.start();
     });
 
-    container.addEventListener('click', this.onClick);
+    container.addEventListener('click', this.onClick.bind(this));
   }
 
   startEach() {
@@ -63,10 +63,13 @@ export class DemoList {
   onClick(e) {
     if (e.target.tagName !== 'CANVAS') return;
     const container = document.querySelector('#canvas-container');
+    const info = document.querySelector('#info');
     const targetButton = e.target.closest('button');
 
+    const isPressed = targetButton.classList.contains('pressed')
     // todo: 説明部のトグル
-    if (targetButton.classList.contains('pressed')) {
+    if (isPressed) {
+      info.classList.add('hidden');
       targetButton.classList.remove('pressed');
       return;
     }
@@ -74,7 +77,11 @@ export class DemoList {
     for (let child of container.children) {
       child.classList.remove('pressed');
     }
+
+    info.classList.remove('hidden');
     targetButton.classList.add('pressed');
+    const sketchId = targetButton.id.replace('sk_', '');
+    info.innerHTML = this.#demos[sketchId].describe() ?? 'no document.';
   }
 /*
   interval(next) {
