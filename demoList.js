@@ -33,7 +33,7 @@ export class DemoList {
     }
   }
 
-  startAll() {
+  startAll(w=400, h=400) {
     const container = document.querySelector('#canvas-container');
     this.#demos.forEach((demo, i) => {
       const btn = document.createElement('button');
@@ -45,6 +45,7 @@ export class DemoList {
         demo.setP5Instance.bind(demo)(p);
         p.draw = () => this.loopDraw(i);
       }, id);
+      demo.resize(w, h);
       demo.start();
     });
 

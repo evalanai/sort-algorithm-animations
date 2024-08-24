@@ -18,7 +18,7 @@ export class Demo {
     this.#sleepTime = this.#sort.interval ?? 50; 
   }
 
-  resize({width, height}) {
+  resize(width, height) {
     this.#render.width  = width;
     this.#render.height = height;
     this.#render.adjustCanvas(this.#p);
