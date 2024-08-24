@@ -51,7 +51,6 @@ export class Demo {
 
   start() {
     this.#sort.doSort(this.#target, () => sleep(this.#sleepTime));
-    //this.#p.draw = this.draw.bind(this);
     this.#render.adjustCanvas(this.#p);
     this.#p.loop();
   }

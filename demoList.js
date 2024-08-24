@@ -83,23 +83,11 @@ export class DemoList {
     const sketchId = targetButton.id.replace('sk_', '');
     info.innerHTML = this.#demos[sketchId].describe() ?? 'no document.';
   }
-/*
-  interval(next) {
-    if (this.#t >= this.#intervalFrame) {
-      next();
-      return;
-    }
-
-    this.#demos[this.#cur].draw();
-    this.#t++;
-  }*/
 
   next() {
     this.#demos[this.#cur].reset();
-
     this.#cur = (this.#cur+1) % this.#demos.length;
     this.#t = 0;
-
   }
 
   restart(i) {

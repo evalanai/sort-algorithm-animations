@@ -1,42 +1,36 @@
 :root {
-    --bg-clicked: #aaf;
-    --fg-clicked: #33f;
+  --bg-clicked: #aaf;
+  --fg-clicked: #33f;
 }
 
-/* html,body { */
-/*   margin: 0; */
-/*   padding: 0; */
-/* } */
-
 canvas {
-    display: block;
+  display: block;
 }
 
 .cnv-button {
-    margin: 10px;
-    align-content: baseline;
-    padding: 0;
-    background-color: #eee;
-    /* transition: 0.5s ease-in-out; */
+  margin: 10px;
+  align-content: baseline;
+  padding: 0;
+  background-color: #eee;
 }
 
 .cnv-button:hover canvas {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .cnv-button:active {
-    background-color: var(--bg-clicked);
+  background-color: var(--bg-clicked);
 }
 
 .pressed {
-    border: solid 2px var(--fg-clicked);
-    background-color: var(--bg-clicked);
+  border: solid 2px var(--fg-clicked);
+  background-color: var(--bg-clicked);
 }
 
 footer {
-    position: relative;
-    bottom: 0;
-    padding: 10px;
+  position: relative;
+  bottom: 0;
+  padding: 10px;
 }
 
 #info {
@@ -54,7 +48,7 @@ footer {
 }
 
 #info.hidden {
-    opacity: 0;
-    height: 20%;
-    visibility: hidden;
+  opacity: 0;
+  height: 20%;
+  visibility: hidden;
 }
