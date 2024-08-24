@@ -1,4 +1,5 @@
 import { Bar } from './bar.js';
+import { shuffle } from './util.js';
 
 export class SortTarget {  // 並べ替え対象
   #numbers;
@@ -12,6 +13,10 @@ export class SortTarget {  // 並べ替え対象
 
   setRender(render) {
     this.#render = render;
+  }
+
+  changeLength(n) {
+    this.#numbers = shuffle([...Array(length)].map((itm, idx) => new Bar(idx+1)));
   }
 
   get length() {

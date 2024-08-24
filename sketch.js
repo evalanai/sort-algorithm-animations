@@ -1,4 +1,4 @@
-import { DemoList } from './demo.js';
+import { DemoList } from './demolist.js';
 import { sortList } from './sort/sortList.js';
 
 // 本当はconstにしたいのですがp5ライブラリの都合上…
@@ -10,18 +10,19 @@ function showDescription() {
   desc.hidden=false;
 }
 
-window.setup = () => {
-  createCanvas(400, 400);
+window.onload = () => {
 
   demoList = new DemoList();
   Object.entries(sortList).forEach(([name, sort]) => 
     demoList.addDemo(name, sort)
   );
-  demoList.start();
+  
+  demoList.startAll();
 }
-
+/*
 window.draw = () => {
   background(220);
   showDescription();
   demoList.eachDraw();
 }
+*/

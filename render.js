@@ -7,6 +7,7 @@ export class Render {  // 描画
   #highlightedRange;
   #target;
   #marks;
+  #p;
 
   constructor(xBegin, yBegin, width, height) {  // 描画範囲の指定
     this.#xBegin = xBegin;
@@ -16,8 +17,20 @@ export class Render {  // 描画
     this.#marks  = new Map();
   }
 
+  set width(w) {
+    this.#width = w;
+  }
+
+  set height(h) {
+    this.#height = h;
+  }
+
   createMark(name, colour, withText=false) {
-    this.#marks.set(name, {color: color(colour), withText, active: true});
+    this.#marks.set(name, {color: this.#p.color(colour), withText, active: true});
+  }
+
+  setP5Instance(p) {
+    this.#p = p;
   }
 
   addMark(index, name) {  // 見た目用
@@ -35,16 +48,24 @@ export class Render {  // 描画
     this.#target = target;
   }
 
-  draw(captions) {  // 常に呼ぶ描画
+  setup(p) {
+    p.createCanvas(this.#width, this.#height);
+  }
+
+  adjustCanvas(p) {
+    p.resizeCanvas(this.#width, this.#height);
+  }
+
+  draw(p, captions) {  // 常に呼ぶ描画
     const margin = 10;
     const tickness = (this.#width-margin*2)/this.#target.length;
 
-    push();
-    noStroke();
-    fill(0);
+    p.push();
+    p.noStroke();
+    p.fill(0);
 
     // 背景
-    rect(this.#xBegin, this.#yBegin, this.#width, this.#height);
+    p.rect(this.#xBegin, this.#yBegin, this.#width, this.#height);
     // 注目中範囲
     if (this.#highlightedRange) {
      /* const rangeLeft  = this.#highlightedRange.begin * tickness+margin;
@@ -53,34 +74,34 @@ export class Render {  // 描画
       rect(rangeLeft, this.#yBegin, rangeRight, this.#height-margin);*/
     }
 
-    translate(margin,0);
+    p.translate(margin/2,-margin/2);
 
     // 棒
     this.#target.bars.forEach((bar, idx) => {
       const x = idx+tickness*idx;
-      const h = map(bar.value, 0, this.#target.length, margin, this.#height-margin);
+      const h = p.map(bar.value, 0, this.#target.length, margin, this.#height-margin);
       const activeMark = bar.marks.find(i => this.#marks.get(i).active);
 
       if (this.#highlightedIndex?.has(idx)) {  // 棒の色
-        fill('red');
+        p.fill('red');
 
       } else if (activeMark) {
-        fill(this.#marks.get(activeMark).color);
+        p.fill(this.#marks.get(activeMark).color);
 
       } else {
-        fill(255);
+        p.fill(255);
       }
 
-      rect(x, this.#height, tickness, -h);  // 棒1本
+      p.rect(x, this.#height, tickness, -h);  // 棒1本
     });
 
-    fill(255);
-    textAlign(LEFT, TOP);
-    textFont('Monospace');
-    textSize(20);
-    text(captions.info, 15, 20);
+    p.fill(255);
+    p.textAlign(p.LEFT, p.TOP);
+    p.textFont('Monospace');
+    p.textSize(this.#width/20);
+    p.text(captions.info, 15, 20);
 
-    pop();
+    p.pop();
   }
 
   highlightSelect(...indexes) {

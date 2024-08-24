@@ -1,82 +1,48 @@
-import { createTargetWithVisualizer, sleep } from './util.js';
-
-// 鬆�逡ｪ縺ｫ陦ｨ遉ｺ縺吶ｋ縺溘ａ縺ｮ陬乗婿菴懈･ｭ
-
-export class DemoList {
-  #demos = [];
-  #cur = 0;
-  #intervalFrame = 60;
-  #t = 0;
-
-  addDemo(name, sort, n=10) {
-    this.#demos.push(new Demo(name, sort, n));
-  }
-
-  eachDraw() {
-    if (this.#demos[this.#cur].finished) {
-      this.interval();
-
-    } else {
-
-      background(200);
-      this.#demos[this.#cur].draw();
-    }
-  }
-
-  interval() {
-    if (this.#t >= this.#intervalFrame) {
-      this.next();
-      return;
-    }
-
-    this.#demos[this.#cur].draw();
-    this.#t++;
-  }
-
-  next() {
-    this.#demos[this.#cur].reset();
-
-    this.#cur = (this.#cur+1) % this.#demos.length;
-    this.#t = 0;
-
-    this.start();
-  }
-
-  start() {
-    this.#demos[this.#cur].start();  
-  }
-
-  thisDescription() {
-    return this.#demos[this.#cur].describe();
-  }
-}
+// -*- coding: utf-8-unix -*-
+import { createTargetWithVisualizer } from './util.js';
+import { sleep } from './util.js';
 
 export class Demo {
   #sort;
   #render;
   #target;
-  #waitTime;
+  #sleepTime;
+  #intervalFrame = 60;
+  #t = 0;
+  #p;
 
   constructor(name, sort, n) {
-    ({render: this.#render, target: this.#target} = createTargetWithVisualizer(5, 5, width-10, height-10, n));
+    ({render: this.#render, target: this.#target} = createTargetWithVisualizer(0, 0, 400, 400, n));
     this.#sort = sort;
     this.#sort.name = name;
-    this.#waitTime = this.#sort.interval ?? 50; 
+    this.#sleepTime = this.#sort.interval ?? 50; 
   }
-/*
-  // optで使えるもの
-  // n: 棒の数
-  // xBegin, yBegin: x, y始点
-  // width, height: 幅、高さ
-  resize(opt) {
+
+  resize({width, height}) {
+    this.#render.width  = width;
+    this.#render.height = height;
+    this.#render.adjustCanvas(this.#p);
   }
-*/
-  setWaitTime(ms) {
-    this.#waitTime = ms;
+
+  changeLength(n) {
+    this.#target.changeLength(n);
+  }
+
+  setSleepTime(ms) {
+    this.#sleepTime = ms;
+  }
+
+  setP5Instance(p) {
+    this.#p = p;
+    this.#render.setP5Instance(p);
   }
 
   get finished() {
-    return this.#target.isSorted;
+    return this.#target.isSorted && this.#t >= this.#intervalFrame;
+  }
+
+  get name() {
+    return this.#sort.name;
   }
 
   describe() {
@@ -84,15 +50,22 @@ export class Demo {
   }
 
   start() {
-    this.#sort.doSort(this.#target, () => sleep(this.#waitTime));
-  } 
+    this.#sort.doSort(this.#target, () => sleep(this.#sleepTime));
+    //this.#p.draw = this.draw.bind(this);
+    this.#render.adjustCanvas(this.#p);
+    this.#p.loop();
+  }
 
   draw() {
-    this.#render.draw({info: `${this.#sort.name}`});
+    this.#p.background(200);
+    this.#render.draw(this.#p, {info: `${this.#sort.name}`});
+    if (this.#target.isSorted) this.#t++;
   }
   
   reset() {
     this.#target.shuffle();
+    this.#p.noLoop();
+    this.#t = 0;
   }
 }
 

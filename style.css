@@ -1,14 +1,40 @@
-html,body {
-  margin: 0;
-  padding: 0;
+:root {
+    --bg-clicked: #aaf;
+    --fg-clicked: #33f;
 }
 
-div {
+/* html,body { */
+/*   margin: 0; */
+/*   padding: 0; */
+/* } */
+
+canvas {
+    display: block;
+}
+
+.cnv-button {
     margin: 10px;
+    align-content: baseline;
+    padding: 0;
+    background-color: #eee;
+    /* transition: 0.5s ease-in-out; */
+}
+
+.cnv-button:hover canvas {
+    opacity: 0.8;
+}
+
+.cnv-button:active {
+    background-color: var(--bg-clicked);
+}
+
+.pressed {
+    border: solid 2px var(--fg-clicked);
+    background-color: var(--bg-clicked);
 }
 
 footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     padding: 10px;
 }
