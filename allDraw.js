@@ -36,7 +36,6 @@ export class AllDraw {
         p.noLoop();
         demo.setP5Instance(p);
         p.draw = this.loopDraw.bind(this,i);
-        console.log(p.draw);
       }, id);
       demo.reset();
     });

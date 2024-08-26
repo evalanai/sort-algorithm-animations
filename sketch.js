@@ -27,5 +27,5 @@ window.onload = () => {
 
   demoList.initAll();
   demoList.initEach();
-  demoList.startAll();
+  demoList.startAll(200, 200);
 }

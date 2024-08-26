@@ -8,7 +8,6 @@ export class EachDraw {
 
   addDemo(name, sort, n) {
     this.#demos.push(new Demo(name, sort, n));
-    console.log(this.#demos);
   }
 
   next() {
