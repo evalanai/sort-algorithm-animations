@@ -3,6 +3,7 @@ import { Demo } from './demo.js';
 
 export class AllDraw {
   #demos = [];
+  #onClick = this.onClick.bind(this);
 
   addDemo(name, sort, n) {
     this.#demos.push(new Demo(name, sort, n));
@@ -47,11 +48,12 @@ export class AllDraw {
     for (let cnv of container.children) {
       cnv.hidden = cnv.id === 'cnv_default';
     }
-    container.addEventListener('click', this.onClick.bind(this));
+    container.addEventListener('click', this.#onClick);
   }
 
   stop() {
     this.#demos.forEach(demo => demo.stopDraw());
+    document.querySelector('#canvas-container').removeEventListener('click', this.#onClick)
   }
 
   start(w=400, h=400) {
