@@ -60,6 +60,10 @@ export class Demo {
     this.#render.draw(this.#p, {info: `${this.#sort.name}`});
     if (this.#target.isSorted) this.#t++;
   }
+
+  stopDraw() {
+    this.#p.noLoop();
+  }
   
   reset() {
     this.#target.shuffle();

@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> Sort Algorithm Animations </title>
+    <title> Sort Algorithm Animations (Beta) </title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script> -->
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -18,6 +18,41 @@
 
     <div id="info" class="hidden"></div>
     <div id="description" hidden></div>
+    <div id="options">
+      <fieldset>
+        <input type="radio" id="draw-each" value="draw-each" name="draw-mode" >
+        <label for="draw-each"> 順番に表示 </label>
+        |
+        <input type="radio" id="draw-tile" value="draw-tile" name="draw-mode" checked>
+        <label for="draw-tile"> 並べて表示 </label>
+      </fieldset>
+
+      <fieldset>
+        <legend> キャンバスサイズ </legend>
+        <input type="checkbox" id="square" name="square" checked>
+        <label for="square">正方形にする</label><br>
+        <label>
+          幅: 
+          <input type="range" id="canvas-scale-w" name="canvas-scale-w" min="100" max="800">
+          <input type="number" min="100" max="800">
+        </label>
+        <label>
+          高さ: 
+          <input type="range" id="canvas-scale-h" name="canvas-scale-h" min="100" max="800">
+          <input type="number" min="100" max="800">
+        </label>
+      </fieldset>
+      <fieldset>
+        <label>
+          並べ替え対象の個数:
+          <input type="range" id="target-length" name="target-length" min="2" max="5000">
+          <input type="number" min="100" max="800">
+        </label>
+        
+      </fieldset>
+
+    </div>
+
     <footer>
       <a href="https://github.com/evalanai/sort-algorithm-animations"> Source on Github </a>
     </footer>

@@ -52,8 +52,8 @@ export class Render {  // 描画
     p.createCanvas(this.#width, this.#height);
   }
 
-  adjustCanvas(p) {
-    p.resizeCanvas(this.#width, this.#height);
+  adjustCanvas() {
+    this.#p.resizeCanvas(this.#width, this.#height);
   }
 
   draw(p, captions) {  // 常に呼ぶ描画

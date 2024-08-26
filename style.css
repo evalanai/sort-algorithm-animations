@@ -1,6 +1,15 @@
 :root {
   --bg-clicked: #aaf;
   --fg-clicked: #33f;
+  --bg-main: #eee;
+  --fg-main: #000;
+  --bg-sub-light: #eefb;
+  --fg-inactive: #555;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--fg-main);
 }
 
 canvas {
@@ -38,7 +47,7 @@ footer {
   bottom: 0;
   left: 0;
   padding: 10px;
-  background-color: #eefb;
+  background-color: var(--bg-sub-light);
   height: 30%;
   display: block;
   width: calc(100% - 20px);
@@ -51,4 +60,45 @@ footer {
   opacity: 0;
   height: 20%;
   visibility: hidden;
+}
+
+#options {
+  position: fixed;
+  left: 5px;
+  bottom: 5px;
+  right: 5px;
+  background: #bbba;
+  border-radius: 10px;
+}
+
+#options fieldset {
+  border-style: none;
+}
+
+#options input[type=radio] {
+  display: none;
+}
+
+#options input[type=radio]:checked+label {
+  font-weight: bold;
+  color: var(--fg-main);
+}
+
+#options input[type=radio]+label:hover {
+  color: var(--fg-main);
+  cursor: pointer;
+}
+
+#options input[type=radio]+label {
+  color: var(--fg-inactive);
+}
+
+#options input[type=number] {
+  border-style: none;
+  border-radius: 2px;
+}
+
+#options input[type=range] {
+  height: 5px;
+  width: 20%;
 }
