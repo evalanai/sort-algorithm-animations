@@ -7,7 +7,12 @@
   --fg-inactive: #555;
 }
 
+html, body {
+  margin: 0;
+}
+
 body {
+  padding: 10px;
   background: var(--bg-main);
   color: var(--fg-main);
 }
@@ -37,9 +42,9 @@ canvas {
 }
 
 footer {
-  position: relative;
-  bottom: 0;
   padding: 10px;
+  text-align: right;
+  font-size: 0.8em;
 }
 
 #info {
@@ -67,7 +72,7 @@ footer {
   position: fixed;
   left: 5px;
   bottom: 5px;
-  right: 5px;
+  padding: 2px;
   background: #bbba;
   border-radius: 10px;
 }
