@@ -6,9 +6,9 @@
     <script src="libs/p5.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
-
   </head>
   <body>
+    <div class="content">
     <main>
       <div id="canvas-container">
         <div id="cnv_default"></div>
@@ -17,6 +17,7 @@
 
     <div id="info" class="hidden"></div>
     <div id="description" hidden></div>
+    </div>
     <div id="options">
       <fieldset>
         <input type="radio" id="draw-each" value="draw-each" name="draw-mode" >
@@ -25,7 +26,7 @@
         <input type="radio" id="draw-tile" value="draw-tile" name="draw-mode" checked>
         <label for="draw-tile"> 並べて表示 </label>
       </fieldset>
-
+      <button id="show-more">+</button>
       <fieldset hidden>
         <legend> キャンバスサイズ </legend>
         <input type="checkbox" id="square" name="square" checked>
@@ -47,9 +48,7 @@
           <input type="range" id="target-length" name="target-length" min="2" max="5000">
           <input type="number" min="100" max="800">
         </label>
-        
       </fieldset>
-
     </div>
 
     <footer>
