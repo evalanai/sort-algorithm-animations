@@ -15,7 +15,7 @@ function setMaxScale() {
 } 
 
 
-window.onload = () => {
+window.addEventListener('load', () => {
   document.querySelector('#draw-each').addEventListener('change', demoList.startEach.bind(demoList));
   document.querySelector('#draw-tile').addEventListener('change', demoList.startAll.bind(demoList, 200, 200));
   setMaxScale();
@@ -28,4 +28,4 @@ window.onload = () => {
   demoList.initAll();
   demoList.initEach();
   demoList.startAll(200, 200);
-}
+});

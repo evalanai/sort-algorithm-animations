@@ -3,7 +3,9 @@
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title> Sort Algorithm Animations (Beta) </title>
-    <script src="libs/p5.min.js"></script>
+    <script defer src="libs/p5.min.js"></script>
+    <script defer type="module" src="sketch.js"></script>
+    <script src="options.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
   </head>
@@ -15,45 +17,48 @@
       </div>
     </main>
 
+    <footer>
+      <a href="https://github.com/evalanai/sort-algorithm-animations"> Source on Github </a>
+    </footer>
+
     <div id="info" class="hidden"></div>
     <div id="description" hidden></div>
     </div>
     <div id="options">
-      <fieldset>
+      <fieldset id="draw-style">
         <input type="radio" id="draw-each" value="draw-each" name="draw-mode" >
-        <label for="draw-each"> 順番に表示 </label>
+        <label for="draw-each" tabindex="0"> 順番に表示 </label>
         |
         <input type="radio" id="draw-tile" value="draw-tile" name="draw-mode" checked>
-        <label for="draw-tile"> 並べて表示 </label>
+        <label for="draw-tile" tabindex="0"> 並べて表示 </label>
       </fieldset>
-      <button id="show-more">+</button>
-      <fieldset hidden>
-        <legend> キャンバスサイズ </legend>
-        <input type="checkbox" id="square" name="square" checked>
-        <label for="square">正方形にする</label><br>
-        <label>
-          幅: 
-          <input type="range" id="canvas-scale-w" name="canvas-scale-w" min="100" max="800">
-          <input type="number" min="100" max="800">
-        </label>
-        <label>
-          高さ: 
-          <input type="range" id="canvas-scale-h" name="canvas-scale-h" min="100" max="800">
-          <input type="number" min="100" max="800">
-        </label>
-      </fieldset>
-      <fieldset hidden>
-        <label>
-          並べ替え対象の個数:
-          <input type="range" id="target-length" name="target-length" min="2" max="5000">
-          <input type="number" min="100" max="800">
-        </label>
-      </fieldset>
-    </div>
+      <button id="reset"> ReRun </button>
+      <button id="show-more"><span>+</span></button>
 
-    <footer>
-      <a href="https://github.com/evalanai/sort-algorithm-animations"> Source on Github </a>
-    </footer>
-    <script type="module" src="sketch.js"></script>
+      <div id="more-options" hidden>
+        <fieldset hidden>
+          <legend> キャンバスサイズ </legend>
+          <input type="checkbox" id="square" name="square" checked>
+          <label for="square">正方形にする</label><br>
+          <label>
+            幅: 
+            <input type="range" id="canvas-scale-w" name="canvas-scale-w" min="100" max="800">
+            <input type="number" min="100" max="800">
+          </label>
+          <label>
+            高さ: 
+            <input type="range" id="canvas-scale-h" name="canvas-scale-h" min="100" max="800">
+            <input type="number" min="100" max="800">
+          </label>
+        </fieldset><br>
+        <fieldset id="target-n" disabled>
+          <label>
+            並べ替え対象の個数:
+            <input type="range"  id="target-n-range" name="target-n" min="2" max="5000">
+            <input type="number" id="target-n-number" min="2" max="5000">
+          </label>
+        </fieldset>
+        </div>
+    </div>
   </body>
 </html>
