@@ -42,13 +42,13 @@
           <label for="square">正方形にする</label><br>
           <label>
             幅: 
-            <input type="range" id="canvas-scale-w" name="canvas-scale-w" min="100" max="800">
-            <input type="number" min="100" max="800">
+            <input type="range" id="canvas-scale-w-range" name="canvas-scale-w" min="100" max="800">
+            <input type="number" id="canvas-scale-w-number" min="100" max="800">
           </label>
           <label>
             高さ: 
-            <input type="range" id="canvas-scale-h" name="canvas-scale-h" min="100" max="800">
-            <input type="number" min="100" max="800">
+            <input type="range" id="canvas-scale-h-range" name="canvas-scale-h" min="100" max="800">
+            <input type="number" id="canvas-scale-h-number" min="100" max="800">
           </label>
         </fieldset><br>
         <fieldset id="target-n" disabled>
@@ -58,7 +58,14 @@
             <input type="number" id="target-n-number" min="2" max="5000">
           </label>
         </fieldset>
-        </div>
+        <fieldset id="sort-speed" disabled>
+          <label>
+            並べ替えスピード:
+            <input type="range"  id="sort-speed-range" name="sort-speed-range" min="2" max="5000">
+            <input type="number" id="sort-speed-number" name="sort-speed-number" min="2" max="5000">
+          </label>
+        </fieldset>
+      </div>
     </div>
   </body>
 </html>

@@ -6,6 +6,7 @@ import { Demo } from './demo.js';
 export class DemoList {
   #eachDraw;
   #allDraw;
+  #mode;
 
   constructor() {
     this.#eachDraw = new EachDraw();
@@ -21,6 +22,7 @@ export class DemoList {
     this.#allDraw.stop();
     this.#eachDraw.display();
     this.#eachDraw.start();
+    this.#mode = "each";
   }
 
   initAll() {
@@ -35,6 +37,19 @@ export class DemoList {
     this.#eachDraw.stop();
     this.#allDraw.display();
     this.#allDraw.start(width, height);
+    this.#mode = "all";
+  }
+
+  restart() {
+    switch (this.#mode) {
+    case "each":
+      this.#eachDraw.restart();
+      break;
+
+    case "all":
+      this.#allDraw .restartAll();
+      break;
+    }
   }
 }
 
@@ -63,7 +78,6 @@ class EachDraw {
       p.draw = this.eachDraw.bind(this, p);
       this.#demos[this.#cur].reset();
     }, "cnv_default");
-    //this.#demos.forEach(demo => demo.reset());
   }
 
   display() {
@@ -80,6 +94,11 @@ class EachDraw {
 
   start() {
     this.#demos[this.#cur].start();
+  }
+
+  restart() {
+    this.stop();
+    this.start();
   }
 
   eachDraw(p) {
@@ -107,6 +126,13 @@ class AllDraw {
   restart(i) {
     this.#demos[i].reset();
     this.#demos[i].start();
+  }
+
+  restartAll() {
+    this.#demos.forEach(demo => {
+      demo.reset();
+      demo.start();
+    })
   }
 
   loopDraw(i) {
