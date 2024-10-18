@@ -44,6 +44,10 @@ body {
   color: var(--fg-main);
 }
 
+button {
+  cursor: pointer;
+}
+
 a {
   color: var(--fg-url);
 }
@@ -94,10 +98,10 @@ fieldset:not([hidden]) {
 
 #info {
   position: fixed;
-  bottom: 0;
+  bottom: 3em;
   left: 0;
   padding: 10px;
-  padding-bottom: 2em;
+  padding-bottom: 3em;
   background-color: var(--bg-sub-light);
   height: 30%;
   display: block;
@@ -105,6 +109,16 @@ fieldset:not([hidden]) {
   overflow-y: scroll;
   transition: 0.3s ease-in-out;
   opacity: 1;
+}
+
+#info:after {
+  position: fixed;
+  background-color: var(--bg-sub-light);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3em;
+  content: "";
 }
 
 #info.hidden {
