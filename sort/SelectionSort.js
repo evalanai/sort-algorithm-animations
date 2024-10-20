@@ -7,8 +7,8 @@ function SelectionSort(arr) {
         biggest = i;
 
         for (let j = i; j < len; j++) {
-            if (arr[j] < arr[j + 1]) {
-                biggest = j + 1;
+            if (arr[biggest] < arr[j]) {
+                biggest = j;
             }
         }
         holder = arr[biggest];
