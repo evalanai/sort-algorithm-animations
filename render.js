@@ -97,7 +97,7 @@ export class Render {  // 描画
 
     p.fill(255);
     p.textAlign(p.LEFT, p.TOP);
-    p.textFont('Monospace');
+    p.textFont('Noto Sans Mono');
     p.textSize(p.max(this.#width/20, 10));
     p.text(captions.info, 0, margin);
 

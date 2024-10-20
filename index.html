@@ -5,11 +5,23 @@
     <title> Sort Algorithm Animations (Beta) </title>
     <script defer src="libs/p5.min.js"></script>
     <script defer type="module" src="sketch.js"></script>
-    <script src="options.js"></script>
+    <script defer src="options.js"></script>
+    <script>
+      window.addEventListener('load', () => document.querySelector('#loading').classList.add('hidden'));
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
   </head>
+
   <body>
+    <div id="loading">
+      <img src="img/sort_svganim.svg">
+      <p> loading... </p>
+    </div>
+
     <div class="content">
     <main>
       <div id="canvas-container">
@@ -35,7 +47,7 @@
       <button id="reset"> ReRun </button>
       <button id="show-more"><span>+</span></button>
 
-      <div id="more-options" hidden>
+      <div id="more-options" class="hidden">
         <fieldset hidden>
           <legend> キャンバスサイズ </legend>
           <input type="checkbox" id="square" name="square" checked>

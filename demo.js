@@ -1,5 +1,6 @@
 // -*- coding: utf-8-unix -*-
 import { createTargetWithVisualizer } from './util.js';
+import { SortTarget } from './sortTarget.js';
 import { sleep } from './util.js';
 
 export class Demo {
@@ -49,8 +50,8 @@ export class Demo {
     return this.#sort.description;
   }
 
-  start() {
-    this.#sort.doSort(this.#target, () => sleep(this.#sleepTime));
+  start(signal) {
+    this.#sort.doSort(this.#target, () => sleep(this.#sleepTime), signal);
     this.#render.adjustCanvas(this.#p);
     this.#p.loop();
   }
@@ -69,6 +70,15 @@ export class Demo {
     this.#target.shuffle();
     this.#p.noLoop();
     this.#t = 0;
+  }
+
+  restart() {
+    // todo: ちょっといい方法が思いつかない
+    this.#target = new SortTarget(this.#target.length);
+    this.#target.setRender(this.#render);
+    this.#render.setTarget(this.#target);
+    this.reset();
+    this.start();
   }
 }
 

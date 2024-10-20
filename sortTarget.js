@@ -16,7 +16,7 @@ export class SortTarget {  // 並べ替え対象
   }
 
   changeLength(n) {
-    this.#numbers = shuffle([...Array(length)].map((itm, idx) => new Bar(idx+1)));
+    this.#numbers = shuffle([...Array(n)].map((itm, idx) => new Bar(idx+1)));
   }
 
   get length() {

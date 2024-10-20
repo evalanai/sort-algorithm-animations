@@ -3,6 +3,7 @@ export const bubblesort = {
     // 本当ならこっちに突っ込もうかと思っていた処理を全部
     // SortTargetに追い出したのでこんな感じで配列の代わりに
     // SortTargetをいじくり回してくだちい
+
     let finished = false;
 
     while (!finished) {

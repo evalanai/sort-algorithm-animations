@@ -18,7 +18,7 @@ window.addEventListener('load', () => {
   const more = document.querySelector('#show-more');
   const moreOptions = document.querySelector('#more-options');
   more.addEventListener('click', () => {
-    moreOptions.hidden = !moreOptions.hidden;
+    moreOptions.classList.toggle('hidden');
     more.classList.toggle('more-open');
   });
 

@@ -88,17 +88,26 @@ class EachDraw {
     }
   }
 
+  updateLength() {
+    const newLength = Number(document.querySelector('#target-n-number').value);
+    if (newLength > 2) {
+      this.#demos[this.#cur].changeLength(newLength);
+    }
+  }
+
   stop() {
     this.#demos[this.#cur].reset();
   }
 
   start() {
+    this.updateLength();
     this.#demos[this.#cur].start();
   }
 
   restart() {
+    this.updateLength();
     this.stop();
-    this.start();
+    this.#demos[this.#cur].restart();
   }
 
   eachDraw(p) {
@@ -118,6 +127,7 @@ class EachDraw {
 class AllDraw {
   #demos = [];
   #onClick = this.onClick.bind(this);
+  #abort = new AbortController();
 
   addDemo(name, sort, n) {
     this.#demos.push(new Demo(name, sort, n));
@@ -129,9 +139,9 @@ class AllDraw {
   }
 
   restartAll() {
+    this.#abort.abort();
     this.#demos.forEach(demo => {
-      demo.reset();
-      demo.start();
+      demo.restart();
     })
   }
 
@@ -180,7 +190,7 @@ class AllDraw {
     this.#demos.forEach((demo, i) => {
       demo.resize(w, h);
       demo.reset();
-      demo.start();
+      demo.start(this.#abort.signal);
     });
   }
 
