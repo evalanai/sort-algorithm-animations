@@ -66,7 +66,7 @@ export class Render {  // 描画
 
     // 背景
     p.rect(this.#xBegin, this.#yBegin, this.#width, this.#height);
-    // 注目中範囲
+    // 注目中範囲: todo
     if (this.#highlightedRange) {
      /* const rangeLeft  = this.#highlightedRange.begin * tickness+margin;
       const rangeRight = (this.#highlightedRange.end) * tickness-margin;
@@ -86,7 +86,7 @@ export class Render {  // 描画
       const h = p.map(
         bar.value,
         0, this.#target.length,
-        margin, this.#height-margin
+        0, this.#height-margin
       );
       const activeMark = bar.marks.find(i => this.#marks.get(i).active);
 
