@@ -3,9 +3,6 @@
 
 ![animation gif](img/sort-anim-vproto0.gif)
 
-このプロジェクトには[p5.js](https://p5js.org/)を使用しています。  
-
-
 
 ## 作った/作りたいアルゴリズム一覧
 - [x] 1: ただのバブルソート
@@ -28,3 +25,6 @@
 ## Inspired by...
 * https://qiita.com/r-ngtm/items/f4fa55c77459f63a5228
 * https://m.youtube.com/watch?v=kPRA0W1kECg
+
+## 謝辞
+このプロジェクトには[p5.js](https://p5js.org/)を使用しています。  
