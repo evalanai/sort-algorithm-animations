@@ -1,7 +1,7 @@
 # sort-algorithm-animations
 水槽に入れて家の玄関に飾って永遠に張り付いて見ていたいと思うのは私だけでしょうか  
 
-![animation gif](img/sort-anim-vproto0.gif)
+[![animation gif](img/sort-anim-vproto0.gif)](https://evalanai.github.io/sort-algorithm-animations/)
 
 
 ## 作った/作りたいアルゴリズム一覧
