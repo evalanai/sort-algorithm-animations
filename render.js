@@ -78,8 +78,16 @@ export class Render {  // 描画
 
     // 棒
     this.#target.bars.forEach((bar, idx) => {
-      const x = idx+tickness*idx;
-      const h = p.map(bar.value, 0, this.#target.length, margin, this.#height-margin);
+      const x = p.map(
+        idx+tickness*idx,
+        0, (this.#target.length-1)+tickness*(this.#target.length-1),
+        0, this.#width - margin - tickness
+      );
+      const h = p.map(
+        bar.value,
+        0, this.#target.length,
+        margin, this.#height-margin
+      );
       const activeMark = bar.marks.find(i => this.#marks.get(i).active);
 
       if (this.#highlightedIndex?.has(idx)) {  // 棒の色
