@@ -51,6 +51,11 @@ export class DemoList {
       break;
     }
   }
+
+  setSleepTime(ms) {
+    this.#eachDraw.setSleepTime(ms);
+    this.#allDraw .setSleepTime(ms);
+  }
 }
 
 
@@ -95,6 +100,10 @@ class EachDraw {
     }
   }
 
+  setSleepTime(ms) {
+    this.#demos.forEach(demo => demo.setSleepTime(ms));
+  }
+
   stop() {
     this.#demos[this.#cur].reset();
   }
@@ -131,6 +140,14 @@ class AllDraw {
 
   addDemo(name, sort, n) {
     this.#demos.push(new Demo(name, sort, n));
+  }
+
+  setSleepTime(ms, i) {
+    if (typeof i === 'number' && i >= 0) {
+      this.#demos[i].setSleepTime(ms);
+    } else {
+      this.#demos.forEach(demo => demo.setSleepTime(ms));
+    }
   }
 
   restart(i) {

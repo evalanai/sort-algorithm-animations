@@ -67,15 +67,15 @@
         <fieldset id="target-n" disabled>
           <label>
             並べ替え対象の個数:
-            <input type="range"  id="target-n-range" name="target-n" min="2" max="5000">
-            <input type="number" id="target-n-number" min="2" max="5000">
+            <input type="range"  id="target-n-range" name="target-n" min="2" max="2000" value="10">
+            <input type="number" id="target-n-number" min="2" max="2000" value="10">
           </label>
         </fieldset>
-        <fieldset id="sort-speed" disabled>
+        <fieldset id="sort-speed">
           <label>
-            並べ替えスピード:
-            <input type="range"  id="sort-speed-range" name="sort-speed-range" min="2" max="5000">
-            <input type="number" id="sort-speed-number" name="sort-speed-number" min="2" max="5000">
+            並べ替えスピード [ms]:
+            <input type="range"  id="sort-speed-range" name="sort-speed-range" min="0" max="1000" value="50">
+            <input type="number" id="sort-speed-number" name="sort-speed-number" min="0" max="1000" value="50">
           </label>
         </fieldset>
       </div>
