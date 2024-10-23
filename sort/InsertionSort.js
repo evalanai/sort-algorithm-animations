@@ -18,7 +18,7 @@ export const InsertionSort = {
                 await sleep();
             }
             arr.set(j + 1, holder);
-            await sleep();    //ここに入れると見やすいかも
+            //await sleep();    //ここに入れると見やすいかも //そんなに変わらなかった
         }
         arr.done();
         return arr;
