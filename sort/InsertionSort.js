@@ -5,6 +5,7 @@ export const InsertionSort = {
 
         for (let i = 1; i < len; i++) {
             holder = arr.at(i);
+            await sleep();    //ここにも入れるとどれを記憶したのか見やすそう
 
             let j = i - 1;
             for (; j >= 0; j--) {
