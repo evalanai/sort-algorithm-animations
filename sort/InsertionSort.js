@@ -5,7 +5,7 @@ export const InsertionSort = {
 
         for (let i = 1; i < len; i++) {
             holder = arr.at(i);
-            await sleep();    //ここにも入れるとどれを記憶したのか見やすそう
+            //await sleep();    //ここにも入れるとどれを記憶したのか見やすそう //そんなに変わらなかった
 
             let j = i - 1;
             for (; j >= 0; j--) {
@@ -15,7 +15,7 @@ export const InsertionSort = {
                 else {
                     break;
                 }
-                //await sleep();
+                await sleep();
             }
             arr.set(j + 1, holder);
             await sleep();    //ここに入れると見やすいかも
