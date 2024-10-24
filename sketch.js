@@ -2,9 +2,9 @@ import { DemoList } from './demoList.js';
 import { sortList } from './sort/sortList.js';
 
 const demoList = new DemoList();
-const desc = document.querySelector('#description');
 
 function showDescription() {
+  const desc = document.querySelector('#description');
   desc.innerHTML=demoList.thisDescription() ?? 'no document.';
   desc.hidden=false;
 }

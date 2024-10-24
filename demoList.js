@@ -62,6 +62,9 @@ export class DemoList {
 class EachDraw {
   #demos = [];
   #cur = 0;
+  #isScrolled = false;
+  #t = 0;
+  #changeDelay = 60;  // [frame]
   #p;
 
   addDemo(name, sort, n) {
@@ -69,12 +72,12 @@ class EachDraw {
   }
 
   next() {
-    this.#demos[this.#cur].reset();
+    this.reset();
     this.#cur = (this.#cur+1) % this.#demos.length;
   }
 
   set activeDemo(name) { // todo: あとでもうちょい軽い処理に書き換える
-    this.#demos[this.#cur].reset();
+    this.reset();
     this.#cur = this.#demos.findIndex(demo => demo.name === name);
     this.start();
   }
@@ -95,6 +98,12 @@ class EachDraw {
     document.querySelector('#sort-choice')
       .addEventListener('change', e =>
         this.activeDemo = e.target.value);
+
+    document.querySelector('#description')
+      .addEventListener('scroll', () => {
+        this.#t = 0;
+        this.#isScrolled = true;
+      });
   }
 
   display() {
@@ -103,6 +112,12 @@ class EachDraw {
     for (let cnv of container.children) {
       cnv.hidden = cnv.id !== 'cnv_default';
     }
+  }
+
+  reset() {
+    this.#demos[this.#cur].reset();
+    this.#t = 0;
+    this.#isScrolled = false;
   }
 
   updateLength() {
@@ -118,6 +133,8 @@ class EachDraw {
 
   stop() {
     this.#demos[this.#cur].reset();
+    this.#t = 0;
+    this.#isScrolled = false;
   }
 
   start() {
@@ -128,18 +145,29 @@ class EachDraw {
 
   restart() {
     this.updateLength();
-    this.stop();
+    this.reset();
     this.#demos[this.#cur].restart();
   }
 
   eachDraw(p) {
-    if (this.#demos[this.#cur].finished) {
+    const desc = document.querySelector('#description');
+    desc.innerHTML = this.thisDescription() ?? 'not documented.';
+
+    /* descriptionがスクロールされたらthis.#changeDelay分延長
+     * 放置されてるなら普通に変更
+     * ソート未完了なら続行
+     */
+    if (this.#demos[this.#cur].finished && this.#t >= this.#changeDelay) {
       this.next();
-      this.#demos[this.#cur].setP5Instance(p);
+      this.start();
+
+    } else if (this.#demos[this.#cur].finished && this.#isScrolled) {
+      this.reset();
       this.start();
 
     } else {
       this.#demos[this.#cur].draw();
+      this.#t++;
     }
   }
 }
