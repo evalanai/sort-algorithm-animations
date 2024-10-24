@@ -82,4 +82,8 @@ export class SortTarget {  // 並べ替え対象
   unmarkIndex(idx, name) {
     this.#render.removeMark(idx, name);
   }
+
+  unmarkAll(name) {
+    for(let i = 0; i < this.length; ++i) this.#render.removeMark(i, name);
+  }
 }

@@ -88,7 +88,7 @@ export class Render {  // 描画
         0, this.#target.length,
         0, this.#height-margin
       );
-      const activeMark = bar.marks.find(i => this.#marks.get(i).active);
+      const activeMark = [...bar.marks].findLast(i => this.#marks.get(i).active);
 
       if (this.#highlightedIndex?.has(idx)) {  // 棒の色
         p.fill('red');
