@@ -9,7 +9,7 @@ import { kariSort,
          shellSort,
          frequencySort } from './sort0000.js';
 import { InsertionSort } from './InsertionSort.js';
-//import { SelectionSort } from './SelectionSort.js';
+import { SelectionSort } from './SelectionSort.js';
 import { ShakerSort } from './ShakerSort.js';
 import { mergesort } from './mergesort.js'; 
 
@@ -21,7 +21,7 @@ export const sortList = {
   ShakerSort,
   quicksort,
   InsertionSort,
-  //SelectionSort,
+  SelectionSort,
   kariSort,
   shuttleSort,
   shellSort,
