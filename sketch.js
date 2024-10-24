@@ -14,6 +14,7 @@ function setMaxScale() {
 
 window.addEventListener('load', () => {
   const desc = document.querySelector('#description');
+  const info = document.querySelector('#info');
   const sortChoice = document.querySelector('#sort-choice');
   const main = document.querySelector('main');
   const changeSpeed = (e) => demoList.setSleepTime(+e.target.value);
@@ -21,7 +22,8 @@ window.addEventListener('load', () => {
   document.querySelector('#draw-each').addEventListener('change', () => {
     demoList.startEach();
     main.dataset.drawMode = "each";
-    sortChoice.hidden = true;
+    sortChoice.hidden = false;
+    info.classList.add('hidden');
     sortChoice.classList.remove('hidden');
     desc.classList.remove('hidden');
   });
