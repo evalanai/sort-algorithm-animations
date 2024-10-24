@@ -3,12 +3,6 @@ import { sortList } from './sort/sortList.js';
 
 const demoList = new DemoList();
 
-function showDescription() {
-  const desc = document.querySelector('#description');
-  desc.innerHTML=demoList.thisDescription() ?? 'no document.';
-  desc.hidden=false;
-}
-
 function setMaxScale() {
   document.querySelector('#canvas-scale-w-range' ).max = window.innerWidth;
   document.querySelector('#canvas-scale-w-number').max = window.innerWidth;
