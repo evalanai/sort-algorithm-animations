@@ -73,16 +73,28 @@ class EachDraw {
     this.#cur = (this.#cur+1) % this.#demos.length;
   }
 
+  set activeDemo(name) { // todo: あとでもうちょい軽い処理に書き換える
+    this.#demos[this.#cur].reset();
+    this.#cur = this.#demos.findIndex(demo => demo.name === name);
+    this.start();
+  }
+
   thisDescription() {
     return this.#demos[this.#cur].describe();
   }
 
   init() {
     new p5(p => {
-      this.#demos[this.#cur].setP5Instance.bind(this.#demos[this.#cur])(p);
+      this.#demos.forEach(demo => {
+        demo.setP5Instance.bind(demo)(p);
+        demo.reset();
+      });
       p.draw = this.eachDraw.bind(this, p);
-      this.#demos[this.#cur].reset();
     }, "cnv_default");
+
+    document.querySelector('#sort-choice')
+      .addEventListener('change', e =>
+        this.activeDemo = e.target.value);
   }
 
   display() {
@@ -109,6 +121,7 @@ class EachDraw {
   }
 
   start() {
+    document.querySelector(`#${this.#demos[this.#cur].name}`).checked=true;
     this.updateLength();
     this.#demos[this.#cur].start();
   }

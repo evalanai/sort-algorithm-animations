@@ -19,19 +19,51 @@ function setMaxScale() {
 
 
 window.addEventListener('load', () => {
-  document.querySelector('#draw-each').addEventListener('change', demoList.startEach.bind(demoList));
-  document.querySelector('#draw-tile').addEventListener('change', demoList.startAll.bind(demoList, 200, 200));
-  document.querySelector('#reset').addEventListener('click', demoList.restart.bind(demoList));
+  const desc = document.querySelector('#description');
+  const sortChoice = document.querySelector('#sort-choice');
+  const main = document.querySelector('main');
   const changeSpeed = (e) => demoList.setSleepTime(+e.target.value);
+
+  document.querySelector('#draw-each').addEventListener('change', () => {
+    demoList.startEach();
+    main.dataset.drawMode = "each";
+    sortChoice.hidden = true;
+    sortChoice.classList.remove('hidden');
+    desc.classList.remove('hidden');
+  });
+  document.querySelector('#draw-tile').addEventListener('change', () => {
+    demoList.startAll(200, 200);
+    main.dataset.drawMode = "all";
+    sortChoice.hidden = true;
+    sortChoice.classList.add('hidden');
+    desc.classList.add('hidden');
+  });
+  document.querySelector('#reset').addEventListener('click', demoList.restart.bind(demoList));
+
   document.querySelector('#sort-speed-number').addEventListener('change', changeSpeed);
   document.querySelector('#sort-speed-range' ).addEventListener('input', changeSpeed);
 
   setMaxScale();
   window.addEventListener('resize', setMaxScale);
 
-  Object.entries(sortList).forEach(([name, sort]) => 
-    demoList.addDemo(name, sort)
-  );
+  Object.entries(sortList).forEach(([name, sort]) => {
+    const radio = document.createElement('input');
+    radio.type  = 'radio';
+    radio.name  = 'sort-select';
+    radio.id    = name;
+    radio.value = name;
+
+    const label     = document.createElement('label');
+    label.innerText = name;
+    label.htmlFor   = name;
+
+    const div = document.createElement('div');
+    div.appendChild(radio);
+    div.appendChild(label);
+    sortChoice.appendChild(div);
+
+    demoList.addDemo(name, sort);
+  });
 
   demoList.initAll();
   demoList.initEach();
