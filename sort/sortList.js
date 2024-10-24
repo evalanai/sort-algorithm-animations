@@ -2,8 +2,6 @@
 import { bubblesort } from './bubbleSort.js';
 import { quicksort  } from './quicksort.js';
 import { kariSort,
-         bubbleSort0,
-         bubbleSort1,
          bubbleSort2,
          shuttleSort,
          shellSort,
@@ -15,8 +13,6 @@ import { mergesort } from './mergesort.js';
 
 export const sortList = {
   bubblesort,
-  bubbleSort0,
-  bubbleSort1,
   bubbleSort2,
   ShakerSort,
   quicksort,
