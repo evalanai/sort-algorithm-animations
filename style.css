@@ -352,6 +352,6 @@ fieldset:not([hidden]):not(.hidden) {
     width: 10em;
   }
   #description {
-    grid-column: 2fr;
+    height: auto;
   }
 }
