@@ -1,20 +1,20 @@
 export const SelectionSort = {
     async doSort(arr, sleep) {
         const len = arr.length;
-        let biggest;
+        let min;
         let holder;
 
         for (let i = 0; i < len; i++) {
-            biggest = i;
+            min = i;
 
             for (let j = i; j < len; j++) {
-                if (arr.at(biggest) < arr.at(j)) {
-                    biggest = j;
+                if (arr.at(min) > arr.at(j)) {
+                    min = j;
                     await sleep();
                 }
             }
-            holder = arr.at(biggest);
-            for (let k = biggest - 1; k >= i; k--) {
+            holder = arr.at(min);
+            for (let k = min - 1; k >= i; k--) {
                 arr.set(k + 1, arr.at(k));
                 await sleep();
             }
