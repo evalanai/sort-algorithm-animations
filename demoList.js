@@ -65,7 +65,7 @@ class EachDraw {
   #isScrolled = false;
   #t = 0;
   #changeDelay = 60;  // [frame]
-  #p;
+  #isChoiced = false;
 
   addDemo(name, sort, n) {
     this.#demos.push(new Demo(name, sort, n));
@@ -95,10 +95,14 @@ class EachDraw {
       p.draw = this.eachDraw.bind(this, p);
     }, "cnv_default");
 
+    // 手動で選択された
     document.querySelector('#sort-choice')
-      .addEventListener('change', e =>
-        this.activeDemo = e.target.value);
+      .addEventListener('change', e => {
+        this.activeDemo = e.target.value;
+        this.#isChoiced = true;
+      });
 
+    // 説明が読まれている
     document.querySelector('#description')
       .addEventListener('scroll', () => {
         this.#t = 0;
@@ -108,6 +112,7 @@ class EachDraw {
 
   display() {
     document.querySelector('#draw-each').checked = true;
+    this.#isChoiced = false;
     const container = document.querySelector('#canvas-container');
     for (let cnv of container.children) {
       cnv.hidden = cnv.id !== 'cnv_default';
@@ -116,13 +121,11 @@ class EachDraw {
 
   reset() {
     this.#demos[this.#cur].reset();
-    this.#t = 0;
-    this.#isScrolled = false;
   }
 
   updateLength() {
     const newLength = Number(document.querySelector('#target-n-number').value);
-    if (newLength > 2) {
+    if (newLength > 2 && newLength <= 500) {
       this.#demos[this.#cur].changeLength(newLength);
     }
   }
@@ -132,9 +135,7 @@ class EachDraw {
   }
 
   stop() {
-    this.#demos[this.#cur].reset();
-    this.#t = 0;
-    this.#isScrolled = false;
+    this.reset();
   }
 
   start() {
@@ -154,14 +155,19 @@ class EachDraw {
     desc.innerHTML = this.thisDescription() ?? 'not documented.';
 
     /* descriptionがスクロールされたらthis.#changeDelay分延長
+     * 手動選択されたものなら同じものを出し続ける
      * 放置されてるなら普通に変更
      * ソート未完了なら続行
      */
-    if (this.#demos[this.#cur].finished && this.#t >= this.#changeDelay) {
+    if (this.#demos[this.#cur].finished &&
+        (!this.#isChoiced &&
+         this.#t >= this.#changeDelay)) {
       this.next();
       this.start();
 
-    } else if (this.#demos[this.#cur].finished && this.#isScrolled) {
+    } else if (this.#demos[this.#cur].finished &&
+               (this.#isChoiced ||
+                this.#isScrolled)) {
       this.reset();
       this.start();
 
