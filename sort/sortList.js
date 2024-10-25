@@ -10,7 +10,8 @@ import { InsertionSort } from './InsertionSort.js';
 import { SelectionSort } from './SelectionSort.js';
 import { ShakerSort } from './ShakerSort.js';
 import { CombSort   } from './combSort.js';
-import { mergesort } from './mergesort.js'; 
+import { mergesort } from './mergesort.js';
+import { gnomeSort } from './gnomeSort.js';
 
 export const sortList = {
   bubblesort,
@@ -20,6 +21,7 @@ export const sortList = {
   quicksort,
   InsertionSort,
   SelectionSort,
+  gnomeSort,
   kariSort,
   shuttleSort,
   shellSort,
