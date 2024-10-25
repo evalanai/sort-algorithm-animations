@@ -9,12 +9,14 @@ import { kariSort,
 import { InsertionSort } from './InsertionSort.js';
 import { SelectionSort } from './SelectionSort.js';
 import { ShakerSort } from './ShakerSort.js';
+import { CombSort   } from './combSort.js';
 import { mergesort } from './mergesort.js'; 
 
 export const sortList = {
   bubblesort,
   bubbleSort2,
   ShakerSort,
+  CombSort,
   quicksort,
   InsertionSort,
   SelectionSort,
