@@ -348,10 +348,17 @@ fieldset:not([hidden]):not(.hidden) {
   main[data-draw-mode="each"] {
     grid-template-columns: auto auto 1fr;
   }
+  
   #sort-choice {
     width: 10em;
   }
+
   #description {
-    height: auto;
+    height: 60vh;
+  }
+
+  main[data-draw-mode="each"] canvas {
+    width: 60vh !important;
+    height: 60vh !important;
   }
 }
